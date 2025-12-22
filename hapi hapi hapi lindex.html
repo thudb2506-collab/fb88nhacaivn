@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPI HAPPI HAPPI - 23/12/2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CẤU HÌNH CƠ BẢN --- */
+        :root {
+            --bg-color: #E1F5FE;
+            --paper-bg: #FFFFFF;
+            --primary: #81D4FA;
+            --dark-blue: #0288D1;
+            --text-color: #546E7A;
+            --sticker-bg: #B3E5FC;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#B3E5FC 20%, transparent 20%),
+                              radial-gradient(#B3E5FC 20%, transparent 20%);
+            background-position: 0 0, 50px 50px;
+            background-size: 100px 100px;
+            font-family: 'Patrick Hand', cursive;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .letter-container {
+            position: relative;
+            background-color: var(--paper-bg);
+            width: 100%;
+            max-width: 500px;
+            padding: 60px 30px 40px 30px;
+            box-shadow: 0 10px 30px rgba(2, 136, 209, 0.2);
+            transform: rotate(-1deg);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Băng dính trang trí */
+        .tape {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 130px; height: 40px; background-color: var(--primary); opacity: 0.9;
+            mask-image: radial-gradient(circle at 10px, transparent 5px, black 5px);
+            mask-position: -10px; mask-size: 20px 100%;
+        }
+
+        /* Ảnh động MỚI (đã thay đổi ở đây) */
+        .cute-gif { 
+            width: 120px; /* Tăng kích thước lên xíu cho đẹp với hình mới */
+            margin: 0 auto 15px auto; 
+            animation: bounce 2s infinite ease-in-out; 
+            border-radius: 10px; /* Bo góc nhẹ cho hình mới */
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        h1 { color: var(--dark-blue); margin: 0 0 10px 0; font-size: 2.2rem; }
+
+        /* --- ĐỒNG HỒ ĐẾM NGƯỢC --- */
+        .countdown-container { display: flex; justify-content: center; gap: 15px; margin: 20px 0; font-family: 'Quicksand', sans-serif; }
+        .time-box { background-color: var(--sticker-bg); padding: 8px; border-radius: 10px; min-width: 55px; border: 2px solid white; box-shadow: 2px 2px 0px var(--dark-blue); }
+        .number { font-size: 1.4rem; font-weight: 700; color: var(--dark-blue); display: block; }
+        .label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-color); display: block; }
+
+        /* --- ĐĨA HÌNH CON THỎ --- */
+        .rabbit-disk-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 30px auto;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            background-color: #fff;
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(80%) brightness(90%); 
+        }
+
+        .rabbit-image {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .overlay-icon {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem; color: rgba(255, 255, 255, 0.9);
+            z-index: 10;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .rabbit-disk-container.unlocked {
+            filter: grayscale(0%) brightness(100%);
+            box-shadow: 0 15px 35px rgba(129, 212, 250, 0.6);
+        }
+
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .is-spinning { animation: spin 6s linear infinite; }
+
+        /* --- LỜI CHÚC --- */
+        #intro-text { color: var(--text-color); margin-top: 20px; font-size: 1.1rem; }
+        #hidden-content-area {
+            display: none; opacity: 0; transition: opacity 1s ease-in;
+            margin-top: 20px; text-align: justify;
+            font-size: 1.2rem; line-height: 1.6;
+            color: var(--text-color);
+        }
+        .signature { text-align: right; margin-top: 30px; font-weight: bold; color: var(--dark-blue); }
+        .message-box { font-family: 'Quicksand', sans-serif; color: #D32F2F; font-weight: bold; margin-bottom: 10px; height: 20px;}
+
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <div class="tape"></div>
+        
+        <img src="https://i.pinimg.com/originals/a5/85/4d/a5854d9b256b4a6b75295e1065e54da3.gif">
+
+        <h1 id="main-title">Wait for 23/12...</h1>
+
+        <div class="countdown-container" id="countdown">
+            <div class="time-box"><span class="number" id="days">00</span><span class="label">Ngày</span></div>
+            <div class="time-box"><span class="number" id="hours">00</span><span class="label">Giờ</span></div>
+            <div class="time-box"><span class="number" id="minutes">00</span><span class="label">Phút</span></div>
+            <div class="time-box"><span class="number" id="seconds">00</span><span class="label">Giây</span></div>
+        </div>
+
+        <div class="message-box" id="statusMsg"></div>
+
+        <div class="rabbit-disk-container" id="diskContainer" onclick="handleDiskClick()">
+            <img src="https://i.pinimg.com/736x/86/7d/20/867d202a6a99eedafd8308dd83f94377.jpg" class="rabbit-image" id="rabbitImage" alt="Rabbit Disk">
+            <i class="fa-solid fa-lock overlay-icon" id="statusIcon"></i>
+        </div>
+        
+        <div id="intro-text">
+            <p>Bên trong chiếc đĩa này chứa một bất ngờ đéi.</p>
+            <p>Quay lại vào ngày <b>23/12/2025</b> để mở khóa nhé cô bé!</p>
+        </div>
+
+        <div id="hidden-content-area">
+            <p><b>Chúc mừng sinh nhật! 🎂</b></p>
+            <p>Tới đây thì anh cạn sức sáng tạo để chúc rồi em ^^ </p>
+            <p>Chúc dr. Lam Kiều tuổi mới thật nhiều niềm vui, học chăm để sau này làm bác sĩ khám xem lòng người giả tạo tới đâu!</p>
+            <div class="signature">Yêu Em, <br> Thư DB 💙</div>
+        </div>
+
+        <audio id="audioPlayer" loop>
+            <source src="https://files.catbox.moe/nlu7yg.mp4" type="video/mp4">
+        </audio>
+
+    </div>
+
+    <script>
+        // --- CẤU HÌNH NGÀY (Sửa thành 2023 để test, sau đó đặt lại 2025) ---
+        const birthdayDate = new Date("Dec 23, 2025 00:00:00").getTime();
+        
+        let isUnlocked = false; 
+        let isPlaying = false;
+
+        // --- ĐẾM NGƯỢC ---
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = birthdayDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").style.display = "none"; 
+                document.getElementById("main-title").innerText = "Happy Birthday!";
+                unlockGift(); 
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // --- MỞ KHÓA GIAO DIỆN ---
+        function unlockGift() {
+            isUnlocked = true;
+            document.getElementById("diskContainer").classList.add("unlocked");
+            document.getElementById("statusIcon").className = "fa-solid fa-play overlay-icon";
+            
+            document.getElementById("intro-text").innerHTML = "<p style='color:#0288D1; font-weight:bold;'>Phong ấn đã được gỡ bỏ! Bấm vào em đi chị Lam!</p>";
+            
+            const hiddenArea = document.getElementById("hidden-content-area");
+            hiddenArea.style.display = "block";
+            setTimeout(() => { hiddenArea.style.opacity = "1"; }, 100);
+        }
+
+        // --- XỬ LÝ CLICK ---
+        function handleDiskClick() {
+            const statusMsg = document.getElementById("statusMsg");
+            const audio = document.getElementById("audioPlayer");
+            const rabbitImage = document.getElementById("rabbitImage");
+            const statusIcon = document.getElementById("statusIcon");
+            const diskContainer = document.getElementById("diskContainer");
+
+            if (!isUnlocked) {
+                statusMsg.innerText = "⛔ Suỵt! Bình tĩnh nào cô bé. Chưa đến ngày 23/12/2025 đâu.";
+                diskContainer.style.transform = "translateX(5px)";
+                setTimeout(() => { diskContainer.style.transform = "translateX(-5px)"; }, 100);
+                setTimeout(() => { diskContainer.style.transform = "translateX(0)"; }, 200);
+            } else {
+                if (isPlaying) {
+                    audio.pause();
+                    rabbitImage.classList.remove('is-spinning');
+                    statusIcon.style.opacity = "1";
+                    statusIcon.style.transform = "translate(-50%, -50%) scale(1)";
+                    isPlaying = false;
+                } else {
+                    audio.play().then(() => {
+                        rabbitImage.classList.add('is-spinning');
+                        statusIcon.style.opacity = "0";
+                        statusIcon.style.transform = "translate(-50%, -50%) scale(0.5)";
+                        statusMsg.innerText = "🎶 Ielts listening test Part I...";
+                        isPlaying = true;
+                    }).catch(e => {
+                        statusMsg.innerText = "Lỗi phát nhạc (Thử lại nhé)";
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
